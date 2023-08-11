@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, Switch, TextInput, TouchableOpacity, View} from 'react-native';
 import DoubleClickInput from './DoubleClickInput';
 import {
   onTodoItemChecked,
@@ -19,11 +19,11 @@ type Props = {
 const ItemOfList: React.FC<Props> = props => {
   const [showInputForChange, setShowInputForChange] = useState(false);
   const dispatch = useAppDispatch();
-  const onCheckedItem = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const onCheckedItem = async (ev: boolean) => {
     try {
       const response = await putTodo({
         id: props.item.id,
-        checked: ev.target.checked,
+        checked: ev,
       });
       dispatch(onTodoItemChecked(response.data));
     } catch (er) {
@@ -54,24 +54,28 @@ const ItemOfList: React.FC<Props> = props => {
     setShowInputForChange(false);
   };
   return (
-    <View>
-      <View className={props.item.checked ? `checked` : `nochecked`}>
-        <View className="view">
-          <label htmlFor={'radio__button' + props.item.id}>
-            <View className="item__radio__button"> </View>
-          </label>
-
-          <TextInput
-            id={'radio__button' + props.item.id}
-            className="toggle"
-            type="checkbox"
-            onChangeText={onCheckedItem}
-            defaultChecked={props.item.checked}
+    <View style={styles.container}>
+      <View style={props.item.checked ? styles.checked : styles.nochecked}>
+        <View style={styles.view}>
+          {/* <label htmlFor={'radio__button' + props.item.id}>
+            <View style={styles.item__radio__button}> </View>
+          </label> */}
+          <TouchableOpacity>
+            <View style={styles.item__radio__button} />
+          </TouchableOpacity>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={props.item.checked ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={onCheckedItem}
+            value={props.item.checked}
           />
 
           {!showInputForChange ? (
             <Text
-              className={props.item.checked ? 'change__opacity' : 'nochange'}
+              style={
+                props.item.checked ? styles.change__opacity : styles.nochange
+              }
               onDoubleClick={handleDoubleClick}>
               {props.item.value}
             </Text>
@@ -91,18 +95,41 @@ const ItemOfList: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
-  input: {
-    fontSize: 20,
-    fontStyle: 'italic',
-    width: 250,
-    height: 50,
-    borderWidth: 2,
-    borderColor: '#ededed',
-    marginTop: 10,
-    paddingLeft: 20,
+  checked: {
+    // textDecoration: 'line-through',
+    // border: 'none',
+    paddingRight: 10,
+  },
+  nochecked: {
+    // border: 'none',
+    paddingRight: 10,
+  },
+  view: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  item__radio__button: {
+    width: 20,
+    height: 20,
+    paddingRight: 10,
+  },
+  toggle: {
+    opacity: 0,
+    position: 'absolute',
+    width: 0,
+    height: 0,
+  },
+  change__opacity: {
+    opacity: 0.3,
+    width: '100%',
+    // display: 'contents',
+  },
+  nochange: {
+    opacity: 1,
+    width: '100%',
+    // display: contents,
   },
 });
 

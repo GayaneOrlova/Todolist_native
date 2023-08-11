@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import Title from './src/components/Title';
 import Input from './src/components/Input';
 import ToDoList from './src/components/ToDoList';
@@ -22,7 +22,11 @@ import {postTodo} from './src/api/todos.api';
 // };
 
 function Todo() {
-  const toDoList = useAppSelector(state => state.todos.toDoList);
+  const toDoList = [
+    {item: 'Todo1', id: '1', checked: false},
+    {item: 'Todo2', id: '2', checked: false},
+  ];
+  // const toDoList = useAppSelector(state => state.todos.toDoList);
   const dispatch = useAppDispatch();
 
   const fetchAllTodosData = async () => {
@@ -39,8 +43,20 @@ function Todo() {
       if (!value.trim()) {
         return;
       }
-      const response = await postTodo(value);
-      dispatch(addItem(response.data));
+      // const response = await postTodo(value);
+      // const response = await fetch('http://localhost:8000/todos/)', {
+      //   method: 'GET',
+      //   body: JSON.stringify({value}),
+      //   headers: {'Content-Type': 'application/json'},
+      // });
+      // const data = await response;
+      // alert(JSON.stringify(response));
+      // dispatch(addItem(response.data));
+      dispatch(addItem({
+        item,
+        id: Math.random(),
+        checked: false
+      }));
     } catch (er) {
       console.log(er);
     }
@@ -55,6 +71,7 @@ function Todo() {
       <View>
         {/* <ToggleOfCheck /> */}
         <Input onFormSubmit={onAddItem} />
+        <Text>{JSON.stringify(toDoList)}</Text>
       </View>
       <ToDoList />
       {toDoList.length ? (

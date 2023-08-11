@@ -19,7 +19,7 @@ const Input: React.FC<Props> = props => {
         placeholder="What needs to be done?"
         value={text}
         onChangeText={texts => setText(texts)}
-        // onSubmitEditing={onFormSubmit}
+        onSubmitEditing={onFormSubmit}
       />
       <Button title="Добавить" onPress={onFormSubmit} />
     </View>

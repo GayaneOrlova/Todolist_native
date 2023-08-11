@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, Text} from 'react-native';
+import {View, Button} from 'react-native';
 import {onClearComplited, setFilter, addManyItems} from '../store/todoSlice';
 import {useAppDispatch} from '../store/hooks';
 import {deleteCheckedTodo, getFiltersTodos} from '../api/todos.api';
@@ -31,10 +31,10 @@ const FilterItemsByStatus: React.FC<Props> = () => {
 
   return (
     <View>
-      <Button onPress={() => onFilterItems('all')} title='All' />
-      <Button onPress={() => onFilterItems('complited')} title='Complited'/>
-      <Button onPress={() => onFilterItems('active')} title='Active'/>
-      <Button onPress={onTodoCheckedDelete} title='Clear complited' />
+      <Button onPress={() => onFilterItems('all')} title="All" />
+      <Button onPress={() => onFilterItems('complited')} title="Complited" />
+      <Button onPress={() => onFilterItems('active')} title="Active" />
+      <Button onPress={onTodoCheckedDelete} title="Clear complited" />
     </View>
   );
 };
