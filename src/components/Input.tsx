@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, View, Button} from 'react-native';
+import {TextInput, StyleSheet, View, Button, Switch} from 'react-native';
 
 type Props = {
   onFormSubmit: (v: string) => void;
@@ -28,8 +28,9 @@ const Input: React.FC<Props> = props => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 25,
   },
   input: {
     fontSize: 20,

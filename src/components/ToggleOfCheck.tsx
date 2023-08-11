@@ -2,17 +2,18 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {onToogleCheck} from '../store/todoSlice';
 import {checkedAllTodo} from '../api/todos.api';
+import {Switch} from 'react-native';
 
 type Props = {};
 
 const ToggleOfCheck: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const toDoList = useAppSelector(state => state.todos.toDoList);
-  const isCheckedItem = Boolean(toDoList.find(item => !item.checked));
+  const isCheckedItem =
+    toDoList.length !== 0 && !Boolean(toDoList.find(item => !item.checked));
   const onTodoCheckedAll = async () => {
     try {
-      const response = await checkedAllTodo();
-      console.log(response);
+      // const response = await checkedAllTodo();
       dispatch(onToogleCheck());
     } catch (er) {
       console.log(er);
@@ -20,10 +21,10 @@ const ToggleOfCheck: React.FC<Props> = () => {
   };
 
   return (
-    <ToggleOfCheckStyled
-      isChecked={isCheckedItem}
-      title="Mark all as complete"
-      onClick={onTodoCheckedAll}
+    <Switch
+      ios_backgroundColor="#3e3e3e"
+      onValueChange={onTodoCheckedAll}
+      value={isCheckedItem}
     />
   );
 };

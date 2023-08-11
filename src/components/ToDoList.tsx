@@ -6,11 +6,11 @@ import {useAppSelector} from '../../src/store/hooks';
 type Props = {};
 
 const ToDoList: React.FC<Props> = () => {
-  // const toDoList = useAppSelector(state => state.todos.toDoList);
-  const toDoList = [
-    {item: 'Todo1', id: '1', checked: false},
-    {item: 'Todo2', id: '2', checked: false},
-  ];
+  const toDoList = useAppSelector(state => state.todos.toDoList);
+  // const toDoList = [
+  //   {item: 'Todo1', id: '1', checked: false},
+  //   {item: 'Todo2', id: '2', checked: false},
+  // ];
   const filter = useAppSelector(state => state.todos.filter);
 
   const filterList = useMemo(() => {
@@ -28,19 +28,19 @@ const ToDoList: React.FC<Props> = () => {
   return (
     <View>
       {filterList.map(item => (
-        <ItemOfList item={item} key={item.id} style={styles.todolist_item} />
+        <ItemOfList item={item} key={item.id} />
       ))}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  todolist_item: {
-    position: 'relative',
-    fontSize: 24,
-    borderColor: 'red',
-    height: 14,
-  },
-});
+// const styles = StyleSheet.create({
+//   todolist_item: {
+//     position: 'relative',
+//     fontSize: 24,
+//     borderColor: 'red',
+//     height: 14,
+//   },
+// });
 
 export default ToDoList;

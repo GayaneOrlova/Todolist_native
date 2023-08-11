@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Title from './src/components/Title';
 import Input from './src/components/Input';
 import ToDoList from './src/components/ToDoList';
 import CountOfUncheckedItems from './src/components/CountOfUncheckedItems';
 import FilterItemsByStatus from './src/components/FilterItemsByStatus';
-// import ToggleOfCheck from './src/components/toggleOfCheck';
+import ToggleOfCheck from './src/components/ToggleOfCheck';
 import {useAppDispatch, useAppSelector} from './src/store/hooks';
 import {
   // Item,
@@ -22,11 +22,11 @@ import {postTodo} from './src/api/todos.api';
 // };
 
 function Todo() {
-  const toDoList = [
-    {item: 'Todo1', id: '1', checked: false},
-    {item: 'Todo2', id: '2', checked: false},
-  ];
-  // const toDoList = useAppSelector(state => state.todos.toDoList);
+  // const toDoList = [
+  //   {item: 'Todo1', id: '1', checked: false},
+  //   {item: 'Todo2', id: '2', checked: false},
+  // ];
+  const toDoList = useAppSelector(state => state.todos.toDoList);
   const dispatch = useAppDispatch();
 
   const fetchAllTodosData = async () => {
@@ -40,27 +40,22 @@ function Todo() {
   const onAddItem = async (value: string) => {
     console.log('text:', value);
     try {
-      if (!value.trim()) {
-        return;
-      }
+      // if (!value.trim()) {
+      //   return;
+      // }
       // const response = await postTodo(value);
-      // const response = await fetch('http://localhost:8000/todos/)', {
-      //   method: 'GET',
-      //   body: JSON.stringify({value}),
-      //   headers: {'Content-Type': 'application/json'},
-      // });
-      // const data = await response;
-      // alert(JSON.stringify(response));
       // dispatch(addItem(response.data));
       dispatch(addItem({
-        item,
-        id: Math.random(),
-        checked: false
-      }));
+          value: value,
+          id: String(Math.random()),
+          checked: false,
+        }),
+      );
     } catch (er) {
       console.log(er);
     }
   };
+
   useEffect(() => {
     fetchAllTodosData();
   }, []);
@@ -69,9 +64,8 @@ function Todo() {
     <View style={styles.container}>
       <Title />
       <View>
-        {/* <ToggleOfCheck /> */}
+        <ToggleOfCheck />
         <Input onFormSubmit={onAddItem} />
-        <Text>{JSON.stringify(toDoList)}</Text>
       </View>
       <ToDoList />
       {toDoList.length ? (
