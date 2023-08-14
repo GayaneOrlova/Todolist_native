@@ -7,10 +7,6 @@ type Props = {};
 
 const ToDoList: React.FC<Props> = () => {
   const toDoList = useAppSelector(state => state.todos.toDoList);
-  // const toDoList = [
-  //   {item: 'Todo1', id: '1', checked: false},
-  //   {item: 'Todo2', id: '2', checked: false},
-  // ];
   const filter = useAppSelector(state => state.todos.filter);
 
   const filterList = useMemo(() => {

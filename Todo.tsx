@@ -40,17 +40,30 @@ function Todo() {
   const onAddItem = async (value: string) => {
     console.log('text:', value);
     try {
-      // if (!value.trim()) {
-      //   return;
-      // }
+      if (!value.trim()) {
+        return;
+      }
+      const response = await postTodo(value);
+      dispatch(addItem(response.data));
+      // dispatch(
+      //   addItem({
+      //     value: value,
+      //     id: String(Math.random()),
+      //     checked: false,
+      //   }),
+      // );
       // const response = await postTodo(value);
+      // const response = await fetch('http://localhost:8000/todos/)', {
+      //   method: 'GET',
+      //   // body: JSON.stringify({value}),
+      //   headers: {'Content-Type': 'application/json',
+      //     Accept: 'application/json',
+      //   },
+      // });
+      // const data = await response.text();
+      // console.log(data);
+      // alert(JSON.stringify(data));
       // dispatch(addItem(response.data));
-      dispatch(addItem({
-          value: value,
-          id: String(Math.random()),
-          checked: false,
-        }),
-      );
     } catch (er) {
       console.log(er);
     }

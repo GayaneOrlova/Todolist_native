@@ -41,7 +41,7 @@ const ItemOfList: React.FC<Props> = props => {
   const changeValue = async (value: string) => {
     try {
       // const response = await putTodo({ id: props.item.id, value });
-      dispatch(onChangeValue({ ...props.item, value: value }));
+      dispatch(onChangeValue({...props.item, value: value}));
     } catch (er) {
       console.log(er);
     }
