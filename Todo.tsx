@@ -16,16 +16,7 @@ import {
 import {getAllTodos} from './src/api/todos.api';
 import {postTodo} from './src/api/todos.api';
 
-// type Props = {
-//   item: Item;
-//   id: string;
-// };
-
 function Todo() {
-  // const toDoList = [
-  //   {item: 'Todo1', id: '1', checked: false},
-  //   {item: 'Todo2', id: '2', checked: false},
-  // ];
   const toDoList = useAppSelector(state => state.todos.toDoList);
   const dispatch = useAppDispatch();
 
@@ -45,6 +36,8 @@ function Todo() {
       }
       const response = await postTodo(value);
       dispatch(addItem(response.data));
+
+      // !!
       // dispatch(
       //   addItem({
       //     value: value,
@@ -52,18 +45,6 @@ function Todo() {
       //     checked: false,
       //   }),
       // );
-      // const response = await postTodo(value);
-      // const response = await fetch('http://localhost:8000/todos/)', {
-      //   method: 'GET',
-      //   // body: JSON.stringify({value}),
-      //   headers: {'Content-Type': 'application/json',
-      //     Accept: 'application/json',
-      //   },
-      // });
-      // const data = await response.text();
-      // console.log(data);
-      // alert(JSON.stringify(data));
-      // dispatch(addItem(response.data));
     } catch (er) {
       console.log(er);
     }

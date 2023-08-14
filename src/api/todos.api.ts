@@ -1,12 +1,5 @@
 import {Item} from '../store/todoSlice';
-import axios from 'axios';
-// import instance from './instance';
-
-// type Props = {
-//   item: Item;
-//   id: string;
-//   // changeValue
-// };
+import axios from './instance';
 
 export const getAllTodos = () => {
   return axios.get<Item[]>('/todos/');
