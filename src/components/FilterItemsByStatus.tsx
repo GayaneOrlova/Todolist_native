@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button, StyleSheet} from 'react-native';
-import {onClearComplited, setFilter, addManyItems} from '../store/todoSlice';
+import {addManyItems, onClearComplited} from '../store/todoSlice';
 import {useAppDispatch} from '../store/hooks';
 import {deleteCheckedTodo, getFiltersTodos} from '../api/todos.api';
 
@@ -10,9 +10,8 @@ const FilterItemsByStatus: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const onFilterItems = async (filter: string) => {
     try {
-      // const response = await getFiltersTodos({filter});
-      // dispatch(addManyItems(response.data));
-      dispatch(setFilter(filter));
+      const response = await getFiltersTodos({filter});
+      dispatch(addManyItems(response.data));
     } catch (er) {
       console.log(er);
     }
@@ -22,7 +21,6 @@ const FilterItemsByStatus: React.FC<Props> = () => {
     try {
       const response = await deleteCheckedTodo();
       console.log(response);
-
       dispatch(onClearComplited());
     } catch (er) {
       console.log(er);

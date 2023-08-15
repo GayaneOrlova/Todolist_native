@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, View, Button, Switch} from 'react-native';
+import {TextInput, StyleSheet, View, Button} from 'react-native';
 
 type Props = {
   onFormSubmit: (v: string) => void;

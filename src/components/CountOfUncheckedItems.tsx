@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {useAppSelector} from '../store/hooks';
 import {Text} from 'react-native-elements';
+import {useAppSelector} from '../store/hooks';
 
 type Props = {};
 

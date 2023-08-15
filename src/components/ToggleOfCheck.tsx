@@ -13,7 +13,7 @@ const ToggleOfCheck: React.FC<Props> = () => {
     toDoList.length !== 0 && !Boolean(toDoList.find(item => !item.checked));
   const onTodoCheckedAll = async () => {
     try {
-      // const response = await checkedAllTodo();
+      const response = await checkedAllTodo();
       dispatch(onToogleCheck());
     } catch (er) {
       console.log(er);

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NativeSyntheticEvent, TextInput, TextInputChangeEventData} from 'react-native';
+import {TextInput} from 'react-native';
 
 type Props = {
   text: string;
@@ -13,8 +13,6 @@ const DoubleClickInput: React.FC<Props> = props => {
   const handleInputChange = (text: React.SetStateAction<string>) => {
     setInputValue(text);
   };
-  // const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-  //   event.preventDefault();
   const handleKeyUp = () => {
     props.onChangeValue(inputValue);
     props.onCloseInputForChange(true);

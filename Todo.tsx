@@ -7,12 +7,7 @@ import CountOfUncheckedItems from './src/components/CountOfUncheckedItems';
 import FilterItemsByStatus from './src/components/FilterItemsByStatus';
 import ToggleOfCheck from './src/components/ToggleOfCheck';
 import {useAppDispatch, useAppSelector} from './src/store/hooks';
-import {
-  // Item,
-  addItem,
-  addManyItems,
-} from './src/store/todoSlice';
-// import { itemRemove } from './store/todoSlice';
+import {addItem, addManyItems} from './src/store/todoSlice';
 import {getAllTodos} from './src/api/todos.api';
 import {postTodo} from './src/api/todos.api';
 
@@ -36,15 +31,6 @@ function Todo() {
       }
       const response = await postTodo(value);
       dispatch(addItem(response.data));
-
-      // !!
-      // dispatch(
-      //   addItem({
-      //     value: value,
-      //     id: String(Math.random()),
-      //     checked: false,
-      //   }),
-      // );
     } catch (er) {
       console.log(er);
     }

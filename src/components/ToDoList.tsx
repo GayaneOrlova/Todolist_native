@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import ItemOfList from './ItemOfList';
 import {useAppSelector} from '../../src/store/hooks';
 

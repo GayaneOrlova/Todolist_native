@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, Switch, TextInput, TouchableOpacity, View } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Switch, TouchableOpacity, View} from 'react-native';
+import {Text} from 'react-native-elements';
 import DoubleClickInput from './DoubleClickInput';
 import {
   onTodoItemChecked,
@@ -7,9 +8,8 @@ import {
   onChangeValue,
   Item,
 } from '../../src/store/todoSlice';
-import { useAppDispatch } from '../../src/store/hooks';
-import { deleteTodo, putTodo } from '../../src/api/todos.api';
-import { Button, Text } from 'react-native-elements';
+import {useAppDispatch} from '../../src/store/hooks';
+import {deleteTodo, putTodo} from '../../src/api/todos.api';
 
 type Props = {
   item: Item;
@@ -18,13 +18,14 @@ type Props = {
 const ItemOfList: React.FC<Props> = props => {
   const [showInputForChange, setShowInputForChange] = useState(false);
   const dispatch = useAppDispatch();
+
   const onCheckedItem = async (ev: boolean) => {
     try {
-      // const response = await putTodo({
-      //   id: props.item.id,
-      //   checked: ev,
-      // });
-      dispatch(onTodoItemChecked({...props.item, checked: ev}));
+      const response = await putTodo({
+        id: props.item.id,
+        checked: ev,
+      });
+      dispatch(onTodoItemChecked(response.data));
     } catch (er) {
       console.log(er);
     }
@@ -32,16 +33,16 @@ const ItemOfList: React.FC<Props> = props => {
 
   const onItemRemove = async () => {
     try {
-      // const response = await deleteTodo(props.item.id);
-      dispatch(onTodoItemRemove(props.item.id));
+      const response = await deleteTodo(props.item.id);
+      dispatch(onTodoItemRemove(response.data));
     } catch (er) {
       console.log(er);
     }
   };
   const changeValue = async (value: string) => {
     try {
-      // const response = await putTodo({ id: props.item.id, value });
-      dispatch(onChangeValue({...props.item, value: value}));
+      const response = await putTodo({id: props.item.id, value});
+      dispatch(onChangeValue(response.data));
     } catch (er) {
       console.log(er);
     }
