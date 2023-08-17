@@ -7,9 +7,9 @@ import {
   onTodoItemRemove,
   onChangeValue,
   Item,
-} from '../../src/store/todoSlice';
-import {useAppDispatch} from '../../src/store/hooks';
-import {deleteTodo, putTodo} from '../../src/api/todos.api';
+} from '../store/todoSlice';
+import {useAppDispatch} from '../store/hooks';
+import {deleteTodo, putTodo} from '../api/todos.api';
 
 type Props = {
   item: Item;
@@ -33,8 +33,8 @@ const ItemOfList: React.FC<Props> = props => {
 
   const onItemRemove = async () => {
     try {
-      const response = await deleteTodo(props.item.id);
-      dispatch(onTodoItemRemove(response.data));
+      await deleteTodo(props.item.id);
+      dispatch(onTodoItemRemove(props.item.id));
     } catch (er) {
       console.log(er);
     }
@@ -56,7 +56,7 @@ const ItemOfList: React.FC<Props> = props => {
   return (
     <View>
       <View>
-        <View style={styles.switch}>
+        <View style={styles.todo_item}>
           <Switch
             ios_backgroundColor="#3e3e3e"
             onValueChange={onCheckedItem}
@@ -65,7 +65,7 @@ const ItemOfList: React.FC<Props> = props => {
           {!showInputForChange ? (
             <View>
               <TouchableOpacity onLongPress={handleDoubleClick}>
-                <Text>{props.item.value}</Text>
+                <Text style={styles.todo_item_text}>{props.item.value}</Text>
               </TouchableOpacity>
             </View>
           ) : (
@@ -87,50 +87,22 @@ const ItemOfList: React.FC<Props> = props => {
 };
 
 const styles = StyleSheet.create({
-  switch: {
+  todo_item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 300,
-    marginBottom: 20,
+    width: 355,
+    height: 60,
+    borderWidth: 2,
+    borderTopWidth: 0,
+    borderColor: '#ededed',
   },
   delete: {
-    color: 'red',
+    color: 'rgba(175,47,47,0.35)',
   },
-  // checked: {
-  //   // textDecoration: 'line-through',
-  //   // border: 'none',
-  //   paddingRight: 10,
-  // },
-  // nochecked: {
-  //   // border: 'none',
-  //   paddingRight: 10,
-  // },
-  // view: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  // },
-  // item__radio__button: {
-  //   width: 20,
-  //   height: 20,
-  //   paddingRight: 10,
-  // },
-  // toggle: {
-  //   opacity: 0,
-  //   position: 'absolute',
-  //   width: 0,
-  //   height: 0,
-  // },
-  // change__opacity: {
-  //   opacity: 0.3,
-  //   width: '100%',
-  //   // display: 'contents',
-  // },
-  // nochange: {
-  //   opacity: 1,
-  //   width: '100%',
-  //   // display: contents,
-  // },
+  todo_item_text: {
+    fontSize: 24,
+  },
 });
 
 export default ItemOfList;

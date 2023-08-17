@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
-import Title from './src/components/Title';
-import Input from './src/components/Input';
-import ToDoList from './src/components/ToDoList';
-import CountOfUncheckedItems from './src/components/CountOfUncheckedItems';
-import FilterItemsByStatus from './src/components/FilterItemsByStatus';
-import ToggleOfCheck from './src/components/ToggleOfCheck';
-import {useAppDispatch, useAppSelector} from './src/store/hooks';
-import {addItem, addManyItems} from './src/store/todoSlice';
-import {getAllTodos} from './src/api/todos.api';
-import {postTodo} from './src/api/todos.api';
+import Title from './components/Title';
+import Input from './components/Input';
+import ToDoList from './components/ToDoList';
+import CountOfUncheckedItems from './components/CountOfUncheckedItems';
+import FilterItemsByStatus from './components/FilterItemsByStatus';
+import {useAppDispatch, useAppSelector} from './store/hooks';
+import {addItem, addManyItems} from './store/todoSlice';
+import {getAllTodos} from './api/todos.api';
+import {postTodo} from './api/todos.api';
 
 function Todo() {
   const toDoList = useAppSelector(state => state.todos.toDoList);
@@ -43,11 +42,10 @@ function Todo() {
   return (
     <View style={styles.container}>
       <Title />
-      <View>
-        <ToggleOfCheck />
+      <View style={styles.input}>
         <Input onFormSubmit={onAddItem} />
       </View>
-      <ToDoList />
+      <ToDoList navigation={} />
       {toDoList.length ? (
         <View>
           <CountOfUncheckedItems />
@@ -62,6 +60,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 70,
+    alignItems: 'center',
+  },
+  input: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
 });
