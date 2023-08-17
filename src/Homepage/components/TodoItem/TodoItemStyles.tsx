@@ -5,11 +5,12 @@ const TodoItemStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 345,
-    height: 60,
-    borderWidth: 2,
+    width: 342,
+    minHeight: 60,
+    borderWidth: 1,
     borderTopWidth: 0,
-    borderColor: 'grey',
+    borderRadius: 5,
+    borderColor: 'black',
   },
   delete: {
     width: 20,
@@ -20,6 +21,14 @@ const TodoItemStyles = StyleSheet.create({
     fontSize: 20,
     width: 180,
     opacity: 0.8,
+  },
+  nochecked: {
+    width: 20,
+    height: 20,
+  },
+  checked: {
+    width: 20,
+    height: 20,
   },
 });
 

@@ -1,9 +1,17 @@
 import {StyleSheet} from 'react-native';
 
 const FilterStyles = StyleSheet.create({
-  filter_container: {
+  container: {
     flexDirection: 'row',
-    marginTop: 25,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  filters: {
+    marginLeft: 45,
+    marginRight: 40,
+    alignItems: 'center',
+    gap: 5,
   },
 });
 

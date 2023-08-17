@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {TextInput, View, Image, TouchableOpacity} from 'react-native';
-import InputStyles from './InputStyles';
 import {useAppSelector} from '../../store/hooks';
 import ToggleOfCheck from '../ToggleOfCheck';
+import InputStyles from './InputStyles';
 
 type Props = {
   onFormSubmit: (v: string) => void;
