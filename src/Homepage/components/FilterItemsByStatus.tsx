@@ -8,6 +8,7 @@ type Props = {};
 
 const FilterItemsByStatus: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
+
   const onFilterItems = async (filter: string) => {
     try {
       const response = await getFiltersTodos({filter});

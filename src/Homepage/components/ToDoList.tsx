@@ -1,10 +1,9 @@
 import React, {useMemo} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ItemOfList from './ItemOfList';
 import {useAppSelector} from '../store/hooks';
-import { Button } from 'react-native-elements';
 
-const ToDoList = ({navigation}) => {
+const ToDoList = () => {
   const toDoList = useAppSelector(state => state.todos.toDoList);
   const filter = useAppSelector(state => state.todos.filter);
 
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
   },
   pressable: {
     color: 'blue',
-},
+  },
 });
 
 export default ToDoList;

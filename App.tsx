@@ -1,25 +1,25 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 import TodoScreen from './src/Homepage/TodoScreen';
-import DetailScreen from './src/DetailPage/DetailScreen';
+import Detail from './src/DetailPage/Detail';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="TodoScreen"
+          name="Todo"
           component={TodoScreen}
           options={{title: 'Todos'}}
         />
 
         <Stack.Screen
-          name="DetailScreen"
-          component={DetailScreen}
+          name="Detail"
+          component={Detail}
           options={{title: 'Detail information'}}
         />
       </Stack.Navigator>

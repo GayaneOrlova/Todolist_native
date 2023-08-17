@@ -10,14 +10,16 @@ import {
 } from '../store/todoSlice';
 import {useAppDispatch} from '../store/hooks';
 import {deleteTodo, putTodo} from '../api/todos.api';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   item: Item;
 };
 
-const ItemOfList: React.FC<Props> = (props, {navigation}) => {
+const ItemOfList: React.FC<Props> = props => {
   const [showInputForChange, setShowInputForChange] = useState(false);
   const dispatch = useAppDispatch();
+  const navigation = useNavigation();
 
   const onCheckedItem = async (ev: boolean) => {
     try {
@@ -54,9 +56,9 @@ const ItemOfList: React.FC<Props> = (props, {navigation}) => {
     setShowInputForChange(false);
   };
 
-  // const onDetailScreen = () => {
-  //   navigation.navigate('DetailScreen', props.item);
-  // };
+  const onDetailScreen = () => {
+    navigation.navigate('Detail', props.item);
+  };
 
   return (
     <View>
@@ -80,8 +82,7 @@ const ItemOfList: React.FC<Props> = (props, {navigation}) => {
               onCloseInputForChange={closeInputForChange}
             />
           )}
-          <TouchableOpacity
-            onPress={() => navigation.navigate('DetailScreen', props.item)}>
+          <TouchableOpacity onPress={onDetailScreen}>
             <Text style={styles.navigate}>Detail</Text>
           </TouchableOpacity>
           <View>
