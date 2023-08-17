@@ -10,7 +10,7 @@ const ToggleOfCheck: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const toDoList = useAppSelector(state => state.todos.toDoList);
   const isCheckedItem =
-    toDoList.length !== 0 && !Boolean(toDoList.find(item => !item.checked));
+    toDoList.length !== 0 && toDoList.find(item => !item.checked);
 
   const onTodoCheckedAll = async () => {
     try {

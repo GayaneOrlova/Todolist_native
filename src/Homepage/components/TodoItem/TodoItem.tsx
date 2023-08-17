@@ -1,22 +1,23 @@
 import React, {useState} from 'react';
-import {StyleSheet, Switch, TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Image, Switch, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
-import DoubleClickInput from './DoubleClickInput';
+import LongPressInput from '../LongPressInput';
 import {
   onTodoItemChecked,
   onTodoItemRemove,
   onChangeValue,
   Item,
-} from '../store/todoSlice';
-import {useAppDispatch} from '../store/hooks';
-import {deleteTodo, putTodo} from '../api/todos.api';
-import {useNavigation} from '@react-navigation/native';
+} from '../../store/todoSlice';
+import {useAppDispatch} from '../../store/hooks';
+import {deleteTodo, putTodo} from '../../api/todos.api';
+import TodoItemStyles from './TodoItemStyles';
 
 type Props = {
   item: Item;
 };
 
-const ItemOfList: React.FC<Props> = props => {
+const TodoItem: React.FC<Props> = props => {
   const [showInputForChange, setShowInputForChange] = useState(false);
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
@@ -63,7 +64,7 @@ const ItemOfList: React.FC<Props> = props => {
   return (
     <View>
       <View>
-        <View style={styles.todo_item}>
+        <View style={TodoItemStyles.todo_item}>
           <Switch
             ios_backgroundColor="#3e3e3e"
             onValueChange={onCheckedItem}
@@ -71,23 +72,29 @@ const ItemOfList: React.FC<Props> = props => {
           />
           {!showInputForChange ? (
             <View>
-              <TouchableOpacity onLongPress={handleDoubleClick}>
-                <Text style={styles.todo_item_text}>{props.item.value}</Text>
+              <TouchableOpacity
+                onLongPress={handleDoubleClick}
+                onPress={onDetailScreen}>
+                <Text style={TodoItemStyles.todo_item_text}>
+                  {props.item.value}
+                </Text>
               </TouchableOpacity>
             </View>
           ) : (
-            <DoubleClickInput
+            <LongPressInput
               text={props.item.value}
               onChangeValue={changeValue}
               onCloseInputForChange={closeInputForChange}
             />
           )}
-          <TouchableOpacity onPress={onDetailScreen}>
-            <Text style={styles.navigate}>Detail</Text>
-          </TouchableOpacity>
           <View>
             <TouchableOpacity onPress={onItemRemove}>
-              <Text style={styles.delete}>Delete</Text>
+              <Image
+                style={TodoItemStyles.delete}
+                source={{
+                  uri: 'https://w7.pngwing.com/pngs/221/443/png-transparent-bin-delete-recycle-remove-trash-basic-user-interface-icon-thumbnail.png',
+                }}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -96,26 +103,4 @@ const ItemOfList: React.FC<Props> = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  todo_item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: 355,
-    height: 60,
-    borderWidth: 2,
-    borderTopWidth: 0,
-    borderColor: '#ededed',
-  },
-  delete: {
-    color: 'rgba(175,47,47,0.35)',
-  },
-  todo_item_text: {
-    fontSize: 24,
-  },
-  navigate: {
-    color: 'rgba(175,47,47,0.35)',
-  },
-});
-
-export default ItemOfList;
+export default TodoItem;

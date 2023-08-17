@@ -1,9 +1,9 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
-import ItemOfList from './ItemOfList';
+import ItemOfList from './TodoItem/TodoItem';
 import {useAppSelector} from '../store/hooks';
 
-const ToDoList = () => {
+const TodoList = () => {
   const toDoList = useAppSelector(state => state.todos.toDoList);
   const filter = useAppSelector(state => state.todos.filter);
 
@@ -20,7 +20,7 @@ const ToDoList = () => {
   }, [toDoList, filter]);
 
   return (
-    <View style={styles.todolist_item}>
+    <View>
       {filterList.map(item => (
         <ItemOfList item={item} key={item.id} />
       ))}
@@ -28,13 +28,4 @@ const ToDoList = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  todolist_item: {
-    borderColor: 'red',
-  },
-  pressable: {
-    color: 'blue',
-  },
-});
-
-export default ToDoList;
+export default TodoList;

@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
-import Title from './components/Title';
-import Input from './components/Input';
-import ToDoList from './components/ToDoList';
-import CountOfUncheckedItems from './components/CountOfUncheckedItems';
-import FilterItemsByStatus from './components/FilterItemsByStatus';
-import {useAppDispatch, useAppSelector} from './store/hooks';
-import {addItem, addManyItems} from './store/todoSlice';
-import {getAllTodos} from './api/todos.api';
-import {postTodo} from './api/todos.api';
+import {View} from 'react-native';
+import Title from '../components/Title/Title';
+import Input from '../components/Input/Input';
+import ToDoList from '../components/TodoList';
+import CountOfUncheckedItems from '../components/CountOfUncheckedItems';
+import Filter from '../components/Filter/Filter';
+import {useAppDispatch, useAppSelector} from '../store/hooks';
+import {addItem, addManyItems} from '../store/todoSlice';
+import {getAllTodos} from '../api/todos.api';
+import {postTodo} from '../api/todos.api';
+import TodoStyles from './TodoStyles';
 
 function Todo() {
   const toDoList = useAppSelector(state => state.todos.toDoList);
@@ -40,32 +41,20 @@ function Todo() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={TodoStyles.container}>
       <Title />
-      <View style={styles.input}>
+      <View style={TodoStyles.input}>
         <Input onFormSubmit={onAddItem} />
       </View>
       <ToDoList />
       {toDoList.length ? (
         <View>
           <CountOfUncheckedItems />
-          <FilterItemsByStatus />
+          <Filter />
         </View>
       ) : null}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 70,
-    alignItems: 'center',
-  },
-  input: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-});
 
 export default Todo;

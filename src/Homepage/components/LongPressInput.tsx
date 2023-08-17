@@ -7,7 +7,7 @@ type Props = {
   onCloseInputForChange: (v: boolean) => void;
 };
 
-const DoubleClickInput: React.FC<Props> = props => {
+const LongPressInput: React.FC<Props> = props => {
   const [inputValue, setInputValue] = useState(props.text);
 
   const handleInputChange = (text: React.SetStateAction<string>) => {
@@ -29,4 +29,4 @@ const DoubleClickInput: React.FC<Props> = props => {
   );
 };
 
-export default DoubleClickInput;
+export default LongPressInput;
