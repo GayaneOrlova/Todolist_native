@@ -22,13 +22,9 @@ const ToDoList = ({navigation}) => {
 
   return (
     <View style={styles.todolist_item}>
-      <Button
-        style={styles.pressable}
-        onPress={() => navigation.navigate('DetailScreen')}>
-        {filterList.map(item => (
-          <ItemOfList item={item} key={item.id} />
-        ))}
-      </Button>
+      {filterList.map(item => (
+        <ItemOfList item={item} key={item.id} />
+      ))}
     </View>
   );
 };

@@ -1,9 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import React from 'react';
+import {View, Text, Button} from 'react-native';
 
-function DetailCard() {
+function DetailCard({navigation}) {
+  const onHomepage = () => {
+    navigation.navigate('Home');
+  };
+
   return (
     <View>
+      <Button title="Back to homepage" onPress={onHomepage} />
       <Text> Detail information</Text>
     </View>
   );

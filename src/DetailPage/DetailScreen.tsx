@@ -1,16 +1,17 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import Detail from './Detail';
+import onHomepage from './Detail';
 // import store from './store/store';
 
-function App(): JSX.Element {
+function DetailScreen(): JSX.Element {
   return (
     <React.StrictMode>
       {/* <Provider store={store}> */}
-       <Detail />
+      <Detail />
       {/* </Provider> */}
     </React.StrictMode>
   );
 }
 
-export default App;
+export default DetailScreen;

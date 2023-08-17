@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import Todo from './Todo';
 import store from './store/store';
 
-function App(): JSX.Element {
+function TodoScreen(): JSX.Element {
   return (
     <React.StrictMode>
       <Provider store={store}>
@@ -13,4 +13,4 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+export default TodoScreen;

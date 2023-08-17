@@ -5,12 +5,17 @@ import Input from './components/Input';
 import ToDoList from './components/ToDoList';
 import CountOfUncheckedItems from './components/CountOfUncheckedItems';
 import FilterItemsByStatus from './components/FilterItemsByStatus';
+import onDetailScreen from './components/ItemOfList';
 import {useAppDispatch, useAppSelector} from './store/hooks';
 import {addItem, addManyItems} from './store/todoSlice';
 import {getAllTodos} from './api/todos.api';
 import {postTodo} from './api/todos.api';
 
-function Todo() {
+// type Props = {
+//   item: Item;
+// };
+
+function Todo({navigation}) {
   const toDoList = useAppSelector(state => state.todos.toDoList);
   const dispatch = useAppDispatch();
 
@@ -45,7 +50,7 @@ function Todo() {
       <View style={styles.input}>
         <Input onFormSubmit={onAddItem} />
       </View>
-      <ToDoList navigation={} />
+      <ToDoList navigation={navigation} />
       {toDoList.length ? (
         <View>
           <CountOfUncheckedItems />

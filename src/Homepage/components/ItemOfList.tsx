@@ -15,7 +15,7 @@ type Props = {
   item: Item;
 };
 
-const ItemOfList: React.FC<Props> = props => {
+const ItemOfList: React.FC<Props> = (props, {navigation}) => {
   const [showInputForChange, setShowInputForChange] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -53,6 +53,11 @@ const ItemOfList: React.FC<Props> = props => {
   const closeInputForChange = () => {
     setShowInputForChange(false);
   };
+
+  // const onDetailScreen = () => {
+  //   navigation.navigate('DetailScreen', props.item);
+  // };
+
   return (
     <View>
       <View>
@@ -75,6 +80,10 @@ const ItemOfList: React.FC<Props> = props => {
               onCloseInputForChange={closeInputForChange}
             />
           )}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('DetailScreen', props.item)}>
+            <Text style={styles.navigate}>Detail</Text>
+          </TouchableOpacity>
           <View>
             <TouchableOpacity onPress={onItemRemove}>
               <Text style={styles.delete}>Delete</Text>
@@ -102,6 +111,9 @@ const styles = StyleSheet.create({
   },
   todo_item_text: {
     fontSize: 24,
+  },
+  navigate: {
+    color: 'rgba(175,47,47,0.35)',
   },
 });
 
