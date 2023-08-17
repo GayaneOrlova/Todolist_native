@@ -4,7 +4,6 @@ import {useNavigation} from '@react-navigation/native';
 
 function DetailCard() {
   const navigation = useNavigation();
-
   const onHomepage = () => {
     navigation.navigate('Todo');
     // navigation.goBack();

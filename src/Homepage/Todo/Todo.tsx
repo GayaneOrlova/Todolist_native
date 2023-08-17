@@ -3,12 +3,10 @@ import {View} from 'react-native';
 import Title from '../components/Title/Title';
 import Input from '../components/Input/Input';
 import ToDoList from '../components/TodoList';
-// import CountOfUncheckedItems from '../components/LeftItems/LeftItems';
 import Filter from '../components/Filter/Filter';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {addItem, addManyItems} from '../store/todoSlice';
-import {getAllTodos} from '../api/todos.api';
-import {postTodo} from '../api/todos.api';
+import {getAllTodos, postTodo} from '../api/todos.api';
 import TodoStyles from './TodoStyles';
 
 function Todo() {
@@ -47,14 +45,7 @@ function Todo() {
         <Input onFormSubmit={onAddItem} />
       </View>
       <ToDoList />
-      {toDoList.length ? (
-        <View>
-          {/* <CountOfUncheckedItems /> */}
-          <View>
-          <Filter />
-          </View>
-        </View>
-      ) : null}
+      {toDoList.length ? <Filter /> : null}
     </View>
   );
 }

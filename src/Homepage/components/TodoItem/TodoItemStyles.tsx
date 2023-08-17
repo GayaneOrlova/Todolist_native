@@ -5,7 +5,7 @@ const TodoItemStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 342,
+    width: 325,
     minHeight: 60,
     borderWidth: 1,
     borderTopWidth: 0,
@@ -22,13 +22,10 @@ const TodoItemStyles = StyleSheet.create({
     width: 180,
     opacity: 0.8,
   },
-  nochecked: {
-    width: 20,
-    height: 20,
-  },
-  checked: {
-    width: 20,
-    height: 20,
+  checkbox: {
+    width: 25,
+    height: 25,
+    marginLeft: 10,
   },
 });
 

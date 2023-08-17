@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Image, Switch, TouchableOpacity, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
 import CheckBox from '@react-native-community/checkbox';
-
 import {onTodoItemChecked, onTodoItemRemove, onChangeValue, Item} from '../../store/todoSlice';
 import {useAppDispatch} from '../../store/hooks';
 import {deleteTodo, putTodo} from '../../api/todos.api';
@@ -39,6 +38,7 @@ const TodoItem: React.FC<Props> = props => {
       console.log(er);
     }
   };
+
   const changeValue = async (value: string) => {
     try {
       const response = await putTodo({id: props.item.id, value});
@@ -47,9 +47,11 @@ const TodoItem: React.FC<Props> = props => {
       console.log(er);
     }
   };
+
   const handleDoubleClick = () => {
     setShowInputForChange(true);
   };
+
   const closeInputForChange = () => {
     setShowInputForChange(false);
   };
@@ -60,33 +62,10 @@ const TodoItem: React.FC<Props> = props => {
 
   return (
     <View style={TodoItemStyles.todo_item}>
-      <Switch
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={onCheckedItem}
-        value={props.item.checked}
-      />
-      {/* <TouchableOpacity onSubmit={onCheckedItem} style={{width:50,}}>
-        {!props.item.checked ? (
-          <Image
-            style={TodoItemStyles.nochecked}
-            source={{
-              uri: 'https://w7.pngwing.com/pngs/130/944/png-transparent-computer-icons-circle-circle-black-shape-svg.png',
-            }}
-          />
-        ) : (
-          <Image
-            style={TodoItemStyles.checked}
-            source={{
-              uri: 'https://free-png.ru/wp-content/uploads/2021/06/free-png.ru-39.png',
-            }}
-          />
-        )} */}
-      {/* </TouchableOpacity> */}
-      {/* <View>
-        <CheckBox onChange={onCheckedItem} value={props.item.checked} />
-      </View>
-       */}
       <CheckBox
+        style={TodoItemStyles.checkbox}
+        onCheckColor="green"
+        onTintColor="green"
         disabled={false}
         value={props.item.checked}
         onValueChange={onCheckedItem}

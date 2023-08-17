@@ -13,6 +13,7 @@ const LongPressInput: React.FC<Props> = props => {
   const handleInputChange = (text: React.SetStateAction<string>) => {
     setInputValue(text);
   };
+
   const handleKeyUp = () => {
     props.onChangeValue(inputValue);
     props.onCloseInputForChange(true);
