@@ -35,3 +35,7 @@ export const checkedAllTodo = () => {
 export const postTodo = (value: string) => {
   return axios.post<Item>('/todos/', {value});
 };
+
+export const getItemDetail = (id: string) => {
+  return axios.get<Item>(`todos/${id}/`);
+};
