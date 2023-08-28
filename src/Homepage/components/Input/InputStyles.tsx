@@ -4,7 +4,7 @@ const InputStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 25,
+    marginTop: 10,
     borderWidth: 1,
     borderBottomWidth: 4,
     borderColor: 'grey',

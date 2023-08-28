@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TextInput, View, Image, TouchableOpacity} from 'react-native';
-import {useAppSelector} from '../../store/hooks';
+import {useAppSelector} from '../../../store/hooks';
 import ToggleOfCheck from '../CheckItems/CheckItems';
 import InputStyles from './InputStyles';
 

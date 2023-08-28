@@ -1,29 +1,13 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
-
-import TodoScreen from './src/Homepage/TodoScreen';
-import Detail from './src/DetailPage/Detail';
-
-const Stack = createStackNavigator();
+import {Provider} from 'react-redux';
+import store from './src/store/store';
+import MainStack from './src/naviagation/MainStack';
 
 function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Todo"
-          component={TodoScreen}
-          options={{title: 'Todos'}}
-        />
-
-        <Stack.Screen
-          name="Detail"
-          component={Detail}
-          options={{title: 'Detail information'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <MainStack />
+    </Provider>
   );
 }
 

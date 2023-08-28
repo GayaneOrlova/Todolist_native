@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {addManyItems, onClearComplited} from '../../store/todoSlice';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {getFiltersTodos, deleteCheckedTodo} from '../../api/todos.api';
+import {addManyItems, onClearComplited} from '../../../store/slices/todoSlice';
+import {useAppDispatch, useAppSelector} from '../../../store/hooks';
+import {getFiltersTodos, deleteCheckedTodo} from '../../../api/todos.api/todos.api';
 import FilterStyles from './FilterStyles';
 
 type Props = {};

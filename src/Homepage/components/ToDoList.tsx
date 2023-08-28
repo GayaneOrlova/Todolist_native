@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {View} from 'react-native';
 import ItemOfList from './TodoItem/TodoItem';
-import {useAppSelector} from '../store/hooks';
+import {useAppSelector} from '../../store/hooks';
 
 const TodoList = () => {
   const toDoList = useAppSelector(state => state.todos.toDoList);

@@ -1,4 +1,4 @@
-import {Item} from '../store/todoSlice';
+import {Item} from '../../store/slices/todoSlice';
 import axios from './instance';
 
 export const getAllTodos = () => {

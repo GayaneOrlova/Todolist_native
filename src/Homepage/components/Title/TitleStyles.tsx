@@ -5,6 +5,7 @@ const TitleStyles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Courier New,Courier,monospace',
     color: 'green',
+    marginTop: 30,
   },
 });
 

@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {getItemDetail} from '../Homepage/api/todos.api';
-import {Item} from '../Homepage/store/todoSlice';
+import {getItemDetail} from '../api/todos.api/todos.api';
+import {Item} from '../store/slices/todoSlice';
 import ItemDetailStyles from './DetailStyles';
 
-type Props = {
-  item: Item;
-};
+type Props = {};
 
-const ItemDetail: React.FC<Props> = props => {
+const ItemDetail: React.FC<Props> = () => {
   const navigation = useNavigation();
   const onHomepage = () => {
-    navigation.navigate('Todo', props.item);
+    navigation.navigate('Todo');
   };
 
   const [itemDetail, setItemDetail] = useState<Item>();

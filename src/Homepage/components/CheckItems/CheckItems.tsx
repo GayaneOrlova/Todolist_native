@@ -1,8 +1,8 @@
 import React from 'react';
 import CheckBox from '@react-native-community/checkbox';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {onToogleCheck} from '../../store/todoSlice';
-import {checkedAllTodo} from '../../api/todos.api';
+import {useAppDispatch, useAppSelector} from '../../../store/hooks';
+import {onToogleCheck} from '../../../store/slices/todoSlice';
+import {checkedAllTodo} from '../../../api/todos.api/todos.api';
 import CheckItemsStyles from './CheckItemsStyles';
 
 type Props = {};
