@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-
-import TodoScreen from '../../src/Homepage/TodoScreen';
+import React, {useEffect, useState} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import TodoScreen from '../PageTodo/TodoScreen';
 import Detail from '../../src/DetailPage/Detail';
-import LoginScreen from '../../src/Login/Login';
+import LoginScreen from '../PageLogin/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useAppDispatch } from '../store/hooks';
-import { setUser } from '../store/slices/userSlice';
-import { getUser } from '../api/user.api/user.api';
+import {useAppDispatch, useAppSelector} from '../store/hooks';
+import {setUser} from '../store/slices/userSlice';
+import {getUser} from '../api/user.api/user.api';
 
 const Stack = createStackNavigator();
 
 const MainStack: React.FC = () => {
   const [initialization, setInitialization] = useState(false);
-  const [userToken, setUserToken] = useState('');
-
+  const isUser = useAppSelector(state => state.user.user);
   const dispatch = useAppDispatch();
 
   const getToken = async () => {
     try {
       const token = await AsyncStorage.getItem('access');
-      if (!token) {
-        return;
-      }
-      setUserToken(token);
+      if (!token) { return; }
+
       const response = await getUser();
       const user = response.data;
       dispatch(setUser(user));
@@ -39,12 +35,12 @@ const MainStack: React.FC = () => {
     getToken();
   }, []);
 
-  // if (!initialization) { return null; }
+  if (!initialization) { return null; }
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {!userToken ? (
+        {!isUser ? (
           <>
             <Stack.Screen
               name="Todo"
@@ -54,10 +50,7 @@ const MainStack: React.FC = () => {
             <Stack.Screen
               name="Login"
               component={LoginScreen}
-              options={{
-                title: 'Login page',
-                animationTypeForReplace: userToken ? 'pop' : 'push',
-              }}
+              options={{title: 'Login page'}}
             />
           </>
         ) : (
@@ -70,6 +63,6 @@ const MainStack: React.FC = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default MainStack;

@@ -23,7 +23,6 @@ const ItemDetail: React.FC<Props> = () => {
     try {
       const response = await getItemDetail(id);
       setItemDetail(response.data);
-      console.log('aaaa', itemDetail);
     } catch (er) {
       console.log(er);
     }

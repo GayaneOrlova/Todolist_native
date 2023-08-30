@@ -10,7 +10,6 @@ import {setUser} from '../store/slices/userSlice';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // console.log('a', email);
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
@@ -26,14 +25,11 @@ const Login = () => {
     setPassword(text);
   };
 
-  // const onLogin = async (value: {email: string; password: string}) => {
   const onLogin = async () => {
     try {
       const response = await postUser({email, password});
       await AsyncStorage.setItem('access', response.data.tokens.access);
-      console.log('a:', response.data.tokens.access);
       dispatch(setUser(response.data.user));
-      navigation.navigate('Todo');
     } catch (er) {
       console.log(er);
     }

@@ -3,7 +3,12 @@ import {useNavigation} from '@react-navigation/native';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
 import CheckBox from '@react-native-community/checkbox';
-import {onTodoItemChecked, onTodoItemRemove, onChangeValue, Item} from '../../../store/slices/todoSlice';
+import {
+  onTodoItemChecked,
+  onTodoItemRemove,
+  onChangeValue,
+  Item,
+} from '../../../store/slices/todoSlice';
 import {useAppDispatch} from '../../../store/hooks';
 import {deleteTodo, putTodo} from '../../../api/todos.api/todos.api';
 import LongPressInput from '../LongPressInput';
